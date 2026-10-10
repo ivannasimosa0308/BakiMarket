@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Productos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1>Nuestro catálogo</h1>
+
+  @if (loading()) {
+  <div class="loading" role="status">
+    <ion-spinner></ion-spinner>
+    <p>Cargando productos...</p>
+  </div>
+  }
+
+  @if (error()) {
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Error</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ error() }}</p>
+      <ion-button (click)="loadProducts()">
+        Reintentar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  }
+
+  @if (!loading() && !error()) {
+  <p>
+    {{ total() }} productos disponibles.
+    Mostrando {{ products().length }} en esta página.
+  </p>
+
+  <div class="catalogo">
+    @for (product of products(); track product.id) {
+    <ion-card>
+      <img class="imagen-producto" [src]="product.thumbnail" [alt]="product.title" loading="lazy">
+
+      <ion-card-header>
+        <ion-card-title>{{ product.title }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="categoria">{{ product.category }}</p>
+        <p>{{ product.brand || 'Sin marca' }}</p>
+
+        <p class="precio">
+          {{ product.price | currency:'EUR' }}
+        </p>
+
+        <p>{{ product.description }}</p>
+
+        <div class="detalles">
+          <span>⭐ {{ product.rating }}</span>
+          <span>Stock: {{ product.stock }}</span>
+        </div>
+
+        <p class="descuento">
+          Descuento: {{ product.discountPercentage }} %
+        </p>
+
+        <div class="dimensiones">
+          <span>Height: {{ product.dimensions.height }}cm</span>
+          <span>Width: {{ product.dimensions.width }}cm</span>
+          <span>Depth: {{ product.dimensions.depth }}cm</span>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+    } @empty {
+    <p>No hay productos disponibles.</p>
+    }
+  </div>
+  }
+
+  <div class="paginacion">
+    <ion-button fill="outline" [disabled]="pagina() === 1 || loading()" (click)="cambiarPagina(pagina() - 1)">
+      Anterior
+    </ion-button>
+
+    <span aria-live="polite">
+      Página {{ pagina() }} de {{ totalPaginas() }}
+    </span>
+
+    <ion-button fill="outline" [disabled]="pagina() >= totalPaginas() || loading()"
+      (click)="cambiarPagina(pagina() + 1)">
+      Siguiente
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,67 @@
+.loading {
+    text-align: center;
+    padding: 40px;
+}
+
+.catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+ion-card {
+    margin: 0;
+    height: 100%;
+}
+
+.imagen-producto {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    padding: 16px;
+}
+
+ion-card-title {
+    font-size: 1.1rem;
+}
+
+.categoria {
+    color: var(--ion-color-medium);
+    text-transform: capitalize;
+}
+
+.precio {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+}
+
+.detalles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.descuento {
+    color: var(--ion-color-success);
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 24px 0;
+
+}
+
+    .dimensiones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 12px;
+
+    }

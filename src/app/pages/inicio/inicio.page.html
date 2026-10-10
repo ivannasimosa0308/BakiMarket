@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>¡WELCOME!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <h1> BAKIMARKET</h1>
+
+  <p>
+    Aplicación Ionic + Angular Standalone
+    para consumir una API REST.
+  </p>
+
+  <ion-button routerLink="/inicio">
+
+    INICIO
+
+  </ion-button>
+
+  <ion-button routerLink="/productos">
+    PRODUCTOS
+  </ion-button>
+
+
+  <ion-button routerLink="/about" fill="outline">
+    SOBRE NOSOTROS
+  </ion-button>
+
+  <ion-button (click)="cambiarModo()">
+    {{modoOscuro ? 'Modo Claro' : 'Modo Oscuro'}}
+  </ion-button>
+  
+
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">inicio</ion-title>
+        </ion-toolbar>
+      </ion-header>
+</ion-content>
